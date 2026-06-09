@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joey Lee — 12-Week Fitness Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1D9E75;
+    --green-light: #E1F5EE;
+    --green-dark: #085041;
+    --green-mid: #0F6E56;
+    --coral: #D85A30;
+    --coral-light: #FAECE7;
+    --blue: #185FA5;
+    --blue-light: #E6F1FB;
+    --blue-mid: #0C447C;
+    --amber: #BA7517;
+    --amber-light: #FAEEDA;
+    --amber-dark: #633806;
+    --gray-50: #F8F7F4;
+    --gray-100: #EFEDE8;
+    --gray-200: #D3D1C7;
+    --gray-400: #888780;
+    --gray-600: #5F5E5A;
+    --gray-800: #2C2C2A;
+    --text: #1a1916;
+    --text-muted: #5F5E5A;
+    --text-faint: #888780;
+    --border: rgba(0,0,0,0.1);
+    --border-light: rgba(0,0,0,0.06);
+    --white: #ffffff;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--gray-50);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  .site-header {
+    background: var(--gray-800);
+    color: white;
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .header-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: white;
+    letter-spacing: -0.01em;
+  }
+  .header-logo span { color: #5DCAA5; }
+  .header-meta {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--gray-800);
+    color: white;
+    padding: 3rem 2rem 4rem;
+  }
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(93,202,165,0.15);
+    color: #5DCAA5;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(93,202,165,0.25);
+    margin-bottom: 1.25rem;
+  }
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .hero-name em { color: #5DCAA5; font-style: italic; }
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.02em;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.25rem;
+  }
+  .stat-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 6px;
+  }
+  .stat-value {
+    font-size: 22px;
+    font-weight: 500;
+    color: white;
+    margin-bottom: 3px;
+  }
+  .stat-note { font-size: 12px; }
+  .stat-note.warn { color: #F0997B; }
+  .stat-note.good { color: #5DCAA5; }
+
+  /* POSTURE ALERT */
+  .posture-section {
+    background: var(--coral-light);
+    border-top: 3px solid var(--coral);
+    padding: 1.5rem 2rem;
+  }
+  .posture-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .posture-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #712B13;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .posture-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 8px;
+  }
+  .posture-item {
+    font-size: 12px;
+    color: #993C1D;
+    padding: 6px 10px;
+    background: rgba(255,255,255,0.5);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--coral);
+  }
+  .posture-item strong { color: #712B13; }
+
+  /* MAIN LAYOUT */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  /* TABS */
+  .tab-nav {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    background: var(--white);
+    padding: 6px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-light);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .tab-btn {
+    padding: 8px 18px;
+    border-radius: var(--radius-md);
+    border: none;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { background: var(--gray-100); color: var(--text); }
+  .tab-btn.active {
+    background: var(--gray-800);
+    color: white;
+  }
+  .tab-btn.active.p1 { background: var(--green-dark); }
+  .tab-btn.active.p2 { background: var(--blue-mid); }
+  .tab-btn.active.p3 { background: var(--amber-dark); }
+  .tab-btn.active.nut { background: #3B6D11; }
+  .tab-btn.active.trunk { background: #712B13; }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* PHASE HEADER */
+  .phase-header {
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid transparent;
+  }
+  .phase-header.p1 { background: var(--green-light); border-color: #9FE1CB; }
+  .phase-header.p2 { background: var(--blue-light); border-color: #B5D4F4; }
+  .phase-header.p3 { background: var(--amber-light); border-color: #FAC775; }
+  .phase-title { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .phase-header.p1 .phase-title { color: var(--green-dark); }
+  .phase-header.p2 .phase-title { color: var(--blue-mid); }
+  .phase-header.p3 .phase-title { color: var(--amber-dark); }
+  .phase-desc { font-size: 13px; }
+  .phase-header.p1 .phase-desc { color: var(--green-mid); }
+  .phase-header.p2 .phase-desc { color: var(--blue); }
+  .phase-header.p3 .phase-desc { color: var(--amber); }
+
+  /* WEEK ACCORDION */
+  .week-list { display: flex; flex-direction: column; gap: 10px; }
+  .week-card {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .week-header {
+    padding: 1rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid transparent;
+    transition: background 0.12s;
+  }
+  .week-header:hover { background: var(--gray-50); }
+  .week-header.open { border-bottom-color: var(--border-light); }
+  .week-label { font-size: 15px; font-weight: 600; color: var(--text); }
+  .week-focus { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .week-chevron {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--gray-100);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    transition: transform 0.2s, background 0.15s;
+    flex-shrink: 0;
+  }
+  .week-chevron.open { transform: rotate(180deg); background: var(--gray-200); }
+  .week-body { display: none; padding: 1.25rem; }
+  .week-body.open { display: block; }
+
+  /* DAY CARDS */
+  .day-grid { display: flex; flex-direction: column; gap: 10px; }
+  .day-card {
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .day-header-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--border-light);
+  }
+  .day-name { font-size: 13px; font-weight: 600; color: var(--text); min-width: 55px; }
+  .day-tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.03em;
+  }
+  .tag-strength { background: var(--green-light); color: var(--green-dark); }
+  .tag-deload { background: var(--gray-100); color: var(--gray-600); }
+  .tag-taper { background: var(--amber-light); color: var(--amber-dark); }
+  .day-focus-label { font-size: 12px; color: var(--text-faint); margin-left: auto; }
+
+  .day-body { padding: 14px; }
+
+  .section-mini {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 5px;
+  }
+  .warmup-text {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    padding: 7px 10px;
+    background: var(--gray-50);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--gray-200);
+  }
+
+  /* EXERCISE ROWS */
+  .ex-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+  .ex-row {
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    gap: 8px;
+    align-items: start;
+  }
+  .ex-badge {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .badge-compound { background: var(--green-light); color: var(--green-dark); }
+  .badge-bw { background: var(--blue-light); color: var(--blue-mid); }
+  .badge-acc { background: var(--gray-100); color: var(--gray-600); }
+  .badge-kb { background: var(--amber-light); color: var(--amber-dark); }
+  .ex-name { font-size: 13px; font-weight: 500; color: var(--text); }
+  .ex-load {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    background: var(--amber-light);
+    color: var(--amber-dark);
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-left: 5px;
+    vertical-align: middle;
+  }
+  .ex-note { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .ex-tag {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--coral);
+    letter-spacing: 0.02em;
+    margin-top: 2px;
+  }
+  .ex-sets {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    white-space: nowrap;
+    text-align: right;
+    padding-top: 2px;
+  }
+
+  /* CORE + COOLDOWN */
+  .core-box {
+    background: rgba(29,158,117,0.06);
+    border: 1px solid rgba(29,158,117,0.15);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    font-size: 12px;
+    color: var(--green-dark);
+    margin-bottom: 8px;
+  }
+  .cooldown-box {
+    background: var(--gray-50);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  /* CARDIO BAR */
+  .cardio-bar {
+    background: var(--green-light);
+    border: 1px solid #9FE1CB;
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .cardio-icon {
+    width: 32px; height: 32px;
+    background: var(--green-dark);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .cardio-label { font-size: 13px; font-weight: 600; color: var(--green-dark); }
+  .cardio-detail { font-size: 11px; color: var(--green-mid); margin-top: 1px; }
+
+  /* NUTRITION */
+  .nut-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+  }
+  .nut-card {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.1rem 1.25rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .nut-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .nut-icon {
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+  }
+  .nut-item {
+    font-size: 12px;
+    color: var(--text-muted);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .nut-item:last-child { border-bottom: none; }
+  .nut-item strong { color: var(--text); font-weight: 600; }
+  .nut-val { font-size: 11px; color: var(--text-faint); text-align: right; white-space: nowrap; }
+
+  /* TRUNK */
+  .trunk-intro {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .trunk-note {
+    background: var(--blue-light);
+    border: 1px solid #B5D4F4;
+    border-radius: var(--radius-md);
+    padding: 1rem 1.25rem;
+    margin-top: 1rem;
+  }
+  .trunk-note-title { font-size: 13px; font-weight: 600; color: var(--blue-mid); margin-bottom: 4px; }
+  .trunk-note p { font-size: 12px; color: var(--blue); }
+
+  /* FOOTER */
+  footer {
+    background: var(--gray-800);
+    color: rgba(255,255,255,0.35);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    margin-top: 3rem;
+  }
+  footer strong { color: rgba(255,255,255,0.6); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 2rem 1rem 2.5rem; }
+    .main { padding: 1rem; }
+    .tab-nav { gap: 4px; }
+    .tab-btn { padding: 6px 12px; font-size: 12px; }
+    .day-focus-label { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-logo">12-Week <span>Fitness Plan</span></div>
+    <div class="header-meta">12-Week Program · 2026</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">&#9679; 12-Week Body Recomposition</div>
+    <h1 class="hero-name">Joey Lee — <em>Strength & Recomp</em></h1>
+    <p class="hero-sub">Compound Movements using Dumbbells &amp; Kettlebell · Zone 2 Cardio · Trunk Protocol · Posture Correction</p>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-label">Body fat</div>
+        <div class="stat-value">29.2%</div>
+        <div class="stat-note warn">Target: ~25%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Skeletal muscle</div>
+        <div class="stat-value">18.7 kg</div>
+        <div class="stat-note good">+6.4 kg goal</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Protein target</div>
+        <div class="stat-value">80–90 g</div>
+        <div class="stat-note good">Lactose-free sources</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Trunk fat</div>
+        <div class="stat-value">6.8 kg</div>
+        <div class="stat-note warn">High — priority focus</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="posture-section">
+  <div class="posture-inner">
+    <div class="posture-title">&#9888; Postural flags — correctives built into every session</div>
+    <div class="posture-grid">
+      <div class="posture-item"><strong>Round shoulder 29° (Severe)</strong> → Wall angels + scapular retraction every warm-up</div>
+      <div class="posture-item"><strong>Lumbar lordosis 47° (Severe)</strong> → Hip flexor stretch + posterior pelvic tilt + dead bug every cool-down</div>
+      <div class="posture-item"><strong>Thoracic kyphosis 43° (Borderline)</strong> → Thoracic extension on foam roller each session</div>
+      <div class="posture-item"><strong>Left arm lean below standard</strong> → Unilateral left-arm work included weekly</div>
+    </div>
+  </div>
+</section>
+
+<main class="main">
+
+  <nav class="tab-nav">
+    <button class="tab-btn p1 active" onclick="switchTab('phase1', this)">Phase 1 · Wk 1–4</button>
+    <button class="tab-btn p2" onclick="switchTab('phase2', this)">Phase 2 · Wk 5–8</button>
+    <button class="tab-btn p3" onclick="switchTab('phase3', this)">Phase 3 · Wk 9–12</button>
+    <button class="tab-btn nut" onclick="switchTab('nutrition', this)">Nutrition</button>
+    <button class="tab-btn trunk" onclick="switchTab('trunk', this)">Trunk Protocol</button>
+  </nav>
+
+  <!-- PHASE 1 -->
+  <div class="tab-panel active" id="phase1">
+    <div class="phase-header p1">
+      <div class="phase-title">Phase 1 — Foundation &amp; Activation (Weeks 1–4)</div>
+      <div class="phase-desc">Compound movements using Dumbbells &amp; Kettlebell · Zone 2 cardio 10–12 min · Learn patterns and build posture habits.</div>
+    </div>
+    <div class="week-list" id="p1-list"></div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="tab-panel" id="phase2">
+    <div class="phase-header p2">
+      <div class="phase-title">Phase 2 — Build &amp; Burn (Weeks 5–8)</div>
+      <div class="phase-desc">Compound movements using Dumbbells &amp; Kettlebell · Zone 2 cardio 15 min · Volume and density increase.</div>
+    </div>
+    <div class="week-list" id="p2-list"></div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="tab-panel" id="phase3">
+    <div class="phase-header p3">
+      <div class="phase-title">Phase 3 — Peak &amp; Recomp (Weeks 9–12)</div>
+      <div class="phase-desc">Compound movements using Dumbbells &amp; Kettlebell · Zone 2 cardio 15 min · Strength peak then taper into reassessment.</div>
+    </div>
+    <div class="week-list" id="p3-list"></div>
+  </div>
+
+  <!-- NUTRITION -->
+  <div class="tab-panel" id="nutrition">
+    <div class="nut-grid">
+      <div class="nut-card">
+        <div class="nut-card-title"><div class="nut-icon" style="background:#E1F5EE;color:#085041;">P</div>Protein 80–90 g/day</div>
+        <div class="nut-item"><span><strong>Breakfast</strong> — 3 eggs + soy milk</span><span class="nut-val">25–28 g</span></div>
+        <div class="nut-item"><span><strong>Lunch</strong> — 120 g chicken / tofu + rice</span><span class="nut-val">30–35 g</span></div>
+        <div class="nut-item"><span><strong>Snack</strong> — Pea / lactose-free whey shake</span><span class="nut-val">20–25 g</span></div>
+        <div class="nut-item"><span><strong>Dinner</strong> — Fish 120 g + tempeh</span><span class="nut-val">25–30 g</span></div>
+        <div class="nut-item"><span><strong>Total</strong></span><span class="nut-val" style="color:#1D9E75;font-weight:600;">~100–118 g</span></div>
+      </div>
+      <div class="nut-card">
+        <div class="nut-card-title"><div class="nut-icon" style="background:#E6F1FB;color:#0C447C;">L</div>Lactose-free protein sources</div>
+        <div class="nut-item">Pea protein isolate (plain or chocolate)</div>
+        <div class="nut-item">Lactose-free whey isolate (99% lactose-free)</div>
+        <div class="nut-item">Egg whites, chicken breast, canned tuna</div>
+        <div class="nut-item">Tempeh, firm tofu, edamame</div>
+        <div class="nut-item">Unsweetened soy milk (~7 g/cup)</div>
+      </div>
+      <div class="nut-card">
+        <div class="nut-card-title"><div class="nut-icon" style="background:#FAEEDA;color:#633806;">C</div>Caloric strategy</div>
+        <div class="nut-item"><span>TDEE (InBody)</span><span class="nut-val">~2,190 kcal</span></div>
+        <div class="nut-item"><span>Target (mild deficit)</span><span class="nut-val">1,800–1,900 kcal</span></div>
+        <div class="nut-item"><span>Carbs — oats, rice, sweet potato</span><span class="nut-val">180–200 g</span></div>
+        <div class="nut-item"><span>Fats — avocado, olive oil, nuts</span><span class="nut-val">55–65 g</span></div>
+        <div class="nut-item" style="color:#D85A30;">Never below 1,700 kcal — protect muscle</div>
+      </div>
+      <div class="nut-card">
+        <div class="nut-card-title"><div class="nut-icon" style="background:#F1EFE8;color:#2C2C2A;">T</div>Timing</div>
+        <div class="nut-item"><span><strong>Pre-workout</strong></span><span class="nut-val">Light carb + protein 60–90 min before</span></div>
+        <div class="nut-item"><span><strong>Post-workout</strong></span><span class="nut-val">Shake within 30–45 min</span></div>
+        <div class="nut-item"><span><strong>Hydration</strong></span><span class="nut-val">2.5–3 L water/day</span></div>
+        <div class="nut-item"><span><strong>Reassess</strong></span><span class="nut-val">Every 4 wks with InBody</span></div>
+        <div class="nut-item" style="color:#D85A30;">Avoid high heels — worsens lumbar lordosis</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRUNK -->
+  <div class="tab-panel" id="trunk">
+    <div class="trunk-intro">
+      <p style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:14px;">Trunk fat 6.8 kg (high). These 5 movements appear in <em>every session</em> — deep stabilisers and anti-rotation work reduce visceral fat area while protecting Joey's 47° lumbar curve.</p>
+      <div class="ex-list">
+        <div class="ex-row">
+          <div class="ex-badge badge-compound">1</div>
+          <div><div class="ex-name">Dead Bug</div><div class="ex-note">Deep core activation without lumbar load. Counters lordosis.</div><div class="ex-tag">3 × 10 each side — every session</div></div>
+          <div class="ex-sets">Core</div>
+        </div>
+        <div class="ex-row">
+          <div class="ex-badge badge-compound">2</div>
+          <div><div class="ex-name">Posterior Pelvic Tilt Hold</div><div class="ex-note">Supine, flatten lumbar to floor, hold 5 sec. Directly corrects 47° lordosis.</div><div class="ex-tag">3 × 12 holds — every session</div></div>
+          <div class="ex-sets">Corrective</div>
+        </div>
+        <div class="ex-row">
+          <div class="ex-badge badge-compound">3</div>
+          <div><div class="ex-name">Bird Dog</div><div class="ex-note">Opposite arm-leg extension. Anti-rotation + lumbar stability.</div><div class="ex-tag">3 × 10 each side — every session</div></div>
+          <div class="ex-sets">Core</div>
+        </div>
+        <div class="ex-row">
+          <div class="ex-badge badge-compound">4</div>
+          <div><div class="ex-name">Hollow Body Hold</div><div class="ex-note">Anterior core compression. Wk 1–4 knees bent, wk 5+ legs straight.</div><div class="ex-tag">3 × 20–45 sec — progresses each phase</div></div>
+          <div class="ex-sets">Core</div>
+        </div>
+        <div class="ex-row">
+          <div class="ex-badge badge-compound">5</div>
+          <div><div class="ex-name">Pallof Press (light resistance band)</div><div class="ex-note">Anti-rotation press. Obliques + transverse abdominis. Introduced week 3.</div><div class="ex-tag">3 × 12 each side — from week 3</div></div>
+          <div class="ex-sets">Core</div>
+        </div>
+      </div>
+      <div class="trunk-note">
+        <div class="trunk-note-title">Why no crunches or sit-ups?</div>
+        <p>Avoid crunches and sit-ups for now as 47° lumbar lordosis means traditional sit-ups increase disc load at L4/L5. Dead bug, bird dog, hollow body and Pallof press build identical anterior core strength while keeping the spine neutral.</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <strong>Joey Lee</strong> &nbsp;·&nbsp; 36F, Manager &nbsp;·&nbsp; 161 cm / 50.1 kg &nbsp;·&nbsp; For health assessment only — not a medical diagnosis. Consult a qualified professional.
+</footer>
+
+<script>
+const phase1 = [
+  {
+    week:1, focus:"Activation — learn the patterns · DB Squat 5 kg/side · KB DL 16 kg",
+    days:[
+      {
+        name:"Day 1", tag:"Strength", tagClass:"tag-strength", focus:"Lower body — squat + hinge",
+        warmup:"5 min: wall angels ×10, cat-cow ×10, hip circle ×10, standing march 30s",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Squat", load:"5 kg/side", sets:"3 × 8–10", note:"DBs at shoulder height (front rack) or sides. Heels hip-width, chest tall, full depth.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Glute Bridge", load:"", sets:"3 × 8–10", note:"BW — activate posterior chain, flatten lumbar. Hold 2 sec at top.", tag:""},
+          {badge:"1", badgeClass:"badge-kb", name:"KB Deadlift", load:"16 kg", sets:"3 × 8–10", note:"Hip hinge to KB between feet. Flat back, push floor away. Squeeze glutes at lockout.", tag:"KB focus"},
+          {badge:"2", badgeClass:"badge-acc", name:"Reverse Lunge (BW)", load:"", sets:"3 × 8–10 each", note:"Hip flexor stretch + quad control.", tag:""}
+        ],
+        core:"Dead bug 3×10 + Posterior pelvic tilt 3×12 + Bird dog 3×10",
+        cooldown:"Hip flexor stretch 60s each + thoracic foam roller 2 min",
+        cardio:"9° incline · 5.0–5.5 km/h · 10 min · HR 110–125"
+      },
+      {
+        name:"Day 2", tag:"Strength", tagClass:"tag-strength", focus:"Upper body + scapular health",
+        warmup:"5 min: wall angels ×12, pec doorway stretch 30s each, band pull-apart ×15",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Chest Press", load:"5 kg each", sets:"3 × 8–10", note:"Shoulder blades retracted before pressing. Directly addresses round shoulder.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Push-Up (knee or full)", load:"BW", sets:"3 × 8–10", note:"3 sec descent, chest to floor.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"DB Bent-Over Row", load:"5 kg", sets:"3 × 8–10 each", note:"Left arm unilateral priority — lean mass imbalance correction.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Scapular Wall Slide", load:"BW", sets:"3 × 8–10", note:"Corrects kyphosis + round shoulder.", tag:""}
+        ],
+        core:"Hollow body 3×20s (knees bent) + Dead bug 3×10",
+        cooldown:"Pec stretch 60s + thoracic extension on foam roller 2 min",
+        cardio:"9° incline · 5.0–5.5 km/h · 10 min · HR 110–125"
+      },
+      {
+        name:"Day 3", tag:"Strength", tagClass:"tag-strength", focus:"Full body — hinge + carry",
+        warmup:"5 min: glute bridge ×10, cat-cow ×10, world's greatest stretch ×5 each",
+        exercises:[
+          {badge:"C", badgeClass:"badge-kb", name:"KB Deadlift", load:"16 kg", sets:"3 × 8–10", note:"Build reps at 16 kg. Drive hips forward at top — do not hyperextend lumbar.", tag:"KB focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"BW Squat", load:"BW", sets:"3 × 8–10", note:"Tempo 3-1-1, arms forward, full depth. Rehearse DB squat pattern.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"DB Lateral Raise", load:"3–5 kg", sets:"3 × 8–10", note:"Shoulder health + posture — both arms equal.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Reverse Plank Hold", load:"BW", sets:"3 × 20s", note:"Opens chest, counters kyphosis.", tag:""}
+        ],
+        core:"Bird dog 3×10 + Posterior pelvic tilt 3×12 + Hollow body 3×20s",
+        cooldown:"Hamstring stretch 60s each + child's pose 90s",
+        cardio:"9° incline · 5.0–5.5 km/h · 10 min · HR 110–125"
+      }
+    ]
+  },
+  {
+    week:2, focus:"Pattern reinforcement — 8–10 reps · DB Squat 5 kg/side · KB DL 16 kg",
+    days:[
+      {
+        name:"Day 1", tag:"Strength", tagClass:"tag-strength", focus:"Lower body — squat volume",
+        warmup:"5 min: hip circle ×10, standing march 30s, ankle mobility ×10, band glute walk",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Squat", load:"5 kg/side", sets:"3 × 8–10", note:"Maintain upright torso, elbows up if front rack. Focus on form over reps.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Step-Up (BW)", load:"BW", sets:"3 × 8–10 each", note:"Use 40–50 cm step. Drives glute and quad. Mimics functional carry.", tag:""},
+          {badge:"1", badgeClass:"badge-kb", name:"KB Deadlift", load:"16 kg", sets:"3 × 8–10", note:"Same weight, clean reps. Dial in hip hinge — bar path straight.", tag:"KB focus"},
+          {badge:"2", badgeClass:"badge-acc", name:"Single-Leg Glute Bridge", load:"BW", sets:"3 × 8–10 each", note:"Hip stability, increases glute demand.", tag:""}
+        ],
+        core:"Dead bug 3×12 + Posterior pelvic tilt 3×15 + Bird dog 3×12",
+        cooldown:"Hip flexor 90s + pigeon pose 60s each",
+        cardio:"9° incline · 5.0–5.5 km/h · 12 min · HR 110–125"
+      },
+      {
+        name:"Day 2", tag:"Strength", tagClass:"tag-strength", focus:"Upper body — push + pull",
+        warmup:"5 min: band pull-apart ×15, wall angel ×12, shoulder circle, pec stretch",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Shoulder Press", load:"5 kg each", sets:"3 × 8–10", note:"Seated or standing. Core braced — no lumbar arch. Full overhead extension.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Incline or Full Push-Up", load:"BW", sets:"3 × 8–10", note:"Controlled descent — quality over quantity.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"DB Single-Arm Row", load:"5 kg", sets:"3 × 8–10 each", note:"Left arm extra attention — lean mass correction.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Face Pull (band)", load:"Light band", sets:"3 × 8–10", note:"Rear delt + external rotation. Posture essential.", tag:""}
+        ],
+        core:"Hollow body 3×25s + Dead bug 3×12",
+        cooldown:"Doorway pec stretch 90s + thoracic foam roller 2 min",
+        cardio:"9° incline · 5.0–5.5 km/h · 12 min · HR 110–125"
+      },
+      {
+        name:"Day 3", tag:"Strength", tagClass:"tag-strength", focus:"Full body — hinge + carry",
+        warmup:"5 min: hip hinge drill ×10, glute bridge ×12, cat-cow ×10",
+        exercises:[
+          {badge:"C", badgeClass:"badge-kb", name:"KB Deadlift", load:"16 kg", sets:"3 × 8–10", note:"Slow 3 sec descent. No rounding. Quality over volume.", tag:"KB focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Reverse Lunge + Knee Drive", load:"BW", sets:"3 × 8–10 each", note:"Hip flexor stretch + functional carry pattern.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"DB Farmer Carry", load:"5 kg each", sets:"3 × 20 m", note:"Trap + grip + core. Mimics carrying children.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Wall Sit", load:"BW", sets:"3 × 30s", note:"Quad endurance, knee tracking drill.", tag:""}
+        ],
+        core:"Pallof press band 3×12 each + Posterior pelvic tilt 3×15",
+        cooldown:"Hamstring + hip flexor 90s each + child's pose",
+        cardio:"9° incline · 5.0–5.5 km/h · 12 min · HR 110–125"
+      }
+    ]
+  },
+  {
+    week:3, focus:"Tempo + Pallof press introduced · DB Squat 5 kg/side · KB DL 16 kg",
+    days:[
+      {
+        name:"Day 1", tag:"Strength", tagClass:"tag-strength", focus:"Lower body — tempo squats",
+        warmup:"5 min: band walk lateral ×15 each, hip hinge drill, ankle circle",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Squat Tempo 3-1-1", load:"5 kg/side", sets:"3 × 12", note:"3 sec down, 1 sec hold at bottom, 1 sec up. Builds time under tension.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Bulgarian Split Squat", load:"BW", sets:"3 × 10 each", note:"Rear foot on bench. Quad + glute. Functional carry prep.", tag:""},
+          {badge:"1", badgeClass:"badge-kb", name:"KB Deadlift", load:"16 kg", sets:"3 × 12", note:"Maintain 16 kg. Add pause at mid-shin on the way down.", tag:"KB focus"},
+          {badge:"2", badgeClass:"badge-acc", name:"Glute Bridge Pulse", load:"BW", sets:"3 × 20", note:"20 fast pulses at top of bridge.", tag:""}
+        ],
+        core:"Dead bug 3×12 + Pallof press 3×12 each side + Hollow body 3×25s",
+        cooldown:"Pigeon pose 90s each + thoracic rotation stretch",
+        cardio:"9° incline · 5.0–5.5 km/h · 12 min · HR 110–125"
+      },
+      {
+        name:"Day 2", tag:"Strength", tagClass:"tag-strength", focus:"Upper body — push + rear chain",
+        warmup:"5 min: wall angel ×15, band pull-apart ×15, shoulder mobility circles",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Chest Press", load:"5 kg each", sets:"3 × 15", note:"Increase reps. Scapula retracted, no shrug. Feel the chest — not just arms.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Diamond or Wide Push-Up", load:"BW", sets:"3 × 10", note:"Vary grip each set to hit different chest fibres.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"DB Bent-Over Row", load:"5 kg", sets:"3 × 15 each", note:"Elbow close to body. Squeeze lat at top. Left arm focus.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Prone Y-T-W", load:"BW", sets:"3 × 10 each", note:"Lying face down — rear delt + trap activation.", tag:""}
+        ],
+        core:"Pallof press 3×12 + Hollow body 3×30s + Dead bug 3×12",
+        cooldown:"Pec stretch + thoracic foam roller 2 min",
+        cardio:"9° incline · 5.0–5.5 km/h · 12 min · HR 110–125"
+      },
+      {
+        name:"Day 3", tag:"Strength", tagClass:"tag-strength", focus:"Full body — carry strength",
+        warmup:"5 min: standing march, cat-cow, hip circle, world's greatest stretch",
+        exercises:[
+          {badge:"C", badgeClass:"badge-kb", name:"KB Deadlift", load:"16 kg", sets:"3 × 15", note:"Highest volume at 16 kg this phase. Control every rep — no bouncing.", tag:"KB focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Squat to Press", load:"BW + 3 kg DB", sets:"3 × 12", note:"Squat down, press arms overhead on stand. Full body chain.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"DB Suitcase Carry", load:"5 kg one side", sets:"3 × 20 m each", note:"Lateral core challenge — oblique + QL stability.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Calf Raise (BW)", load:"BW", sets:"3 × 20", note:"Endurance base, knee-over-toe.", tag:""}
+        ],
+        core:"Bird dog 3×12 + Posterior pelvic tilt 3×15 + Pallof press 3×12 each",
+        cooldown:"Full body stretch 5 min — hip, hamstring, pec, thoracic",
+        cardio:"9° incline · 5.0–5.5 km/h · 12 min · HR 110–125"
+      }
+    ]
+  },
+  {
+    week:4, focus:"Deload — reduce volume 30%, maintain quality",
+    days:[
+      {
+        name:"Day 1", tag:"Deload", tagClass:"tag-deload", focus:"Lower — lighter, move well",
+        warmup:"5 min: quality over speed",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Squat", load:"5 kg/side", sets:"3 × 10", note:"Deload reps. Focus on depth and posture.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Glute Bridge", load:"BW", sets:"3 × 12", note:"Reset posterior chain.", tag:""},
+          {badge:"1", badgeClass:"badge-kb", name:"KB Deadlift", load:"16 kg", sets:"2 × 8", note:"Reduce sets. Quality hip hinge only. No grind reps.", tag:"KB focus"},
+          {badge:"2", badgeClass:"badge-acc", name:"Band Clamshell", load:"Light band", sets:"2 × 15 each", note:"Maintenance volume.", tag:""}
+        ],
+        core:"Dead bug 2×10 + Posterior pelvic tilt 2×12 + Bird dog 2×10",
+        cooldown:"Extended hip flexor + thoracic stretch 8 min",
+        cardio:"9° incline · 5.0–5.5 km/h · 10 min · HR 108–120"
+      },
+      {
+        name:"Day 2", tag:"Deload", tagClass:"tag-deload", focus:"Upper — mobility focus",
+        warmup:"5 min: wall angel ×15, pec doorway stretch, band pull-apart",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Shoulder Press", load:"3 kg each", sets:"3 × 10", note:"Deload weight. Full ROM priority.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Knee Push-Up", load:"BW", sets:"3 × 10", note:"Regress — protect joints, maintain pattern.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"DB Single-Arm Row", load:"5 kg", sets:"2 × 12 each", note:"Left arm focus. Maintain muscle memory.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Scapular Wall Slide", load:"BW", sets:"3 × 12", note:"Active recovery + posture.", tag:""}
+        ],
+        core:"Hollow body 2×20s + Pallof press 2×10 each",
+        cooldown:"Doorway pec stretch + foam roller thoracic 3 min",
+        cardio:"9° incline · 5.0–5.5 km/h · 10 min · HR 108–120"
+      },
+      {
+        name:"Day 3", tag:"Deload", tagClass:"tag-deload", focus:"Full body — active recovery",
+        warmup:"5 min: full body mobility",
+        exercises:[
+          {badge:"C", badgeClass:"badge-kb", name:"KB Deadlift", load:"16 kg", sets:"2 × 8", note:"Deload sets. Slow and controlled. Feel hamstring stretch.", tag:"KB focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"BW Squat", load:"BW", sets:"3 × 12", note:"Slow tempo — reinforce DB squat pattern.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"Farmer Carry", load:"3 kg each", sets:"2 × 20 m", note:"Light carry — maintain grip and core.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Wall Sit", load:"BW", sets:"2 × 20s", note:"Reduced duration.", tag:""}
+        ],
+        core:"Dead bug 2×10 + Bird dog 2×10 + Posterior pelvic tilt 2×12",
+        cooldown:"Full body 10 min stretch — extra time on hip flexor and pec",
+        cardio:"9° incline · 5.0–5.5 km/h · 10 min · HR 108–120"
+      }
+    ]
+  }
+];
+
+const phase2 = [
+  {
+    week:5, focus:"Load increase — DB Squat 6 kg/side · KB DL 18 kg",
+    days:[
+      {
+        name:"Day 1", tag:"Strength", tagClass:"tag-strength", focus:"Lower body — loaded squat",
+        warmup:"5 min: band walk, hip hinge, ankle + thoracic mobility",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Squat", load:"6 kg/side", sets:"3 × 12", note:"Step up to 6 kg/side. Keep chest tall and heels down.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Bulgarian Split Squat", load:"BW", sets:"3 × 12 each", note:"Increase reps from week 3.", tag:""},
+          {badge:"1", badgeClass:"badge-kb", name:"KB Deadlift", load:"18 kg", sets:"3 × 10", note:"First session at 18 kg. Reduce reps — earn the weight with form first.", tag:"KB focus"},
+          {badge:"2", badgeClass:"badge-acc", name:"Single-Leg Glute Bridge", load:"BW", sets:"3 × 15 each", note:"Add 2 sec hold at top.", tag:""}
+        ],
+        core:"Dead bug 3×12 + Pallof press 3×15 each + Hollow body 3×30s",
+        cooldown:"Hip flexor 90s + pigeon 60s each",
+        cardio:"9° incline · 5.0–5.5 km/h · 15 min · HR 110–125"
+      },
+      {
+        name:"Day 2", tag:"Strength", tagClass:"tag-strength", focus:"Upper body — horizontal pull",
+        warmup:"5 min: band pull-apart ×15, wall angel ×12, pec stretch",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Chest Press", load:"8 kg each", sets:"3 × 12", note:"Upper body load increase. Scapula squeeze first, then press.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Full Push-Up", load:"BW", sets:"3 × 12", note:"Full chest to floor, no sag.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"DB Bent-Over Row", load:"8 kg each arm", sets:"3 × 12 each", note:"Pull elbow past torso — lat engagement.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Face Pull (band)", load:"Light band", sets:"3 × 15", note:"Rear delt + external rotation — posture support.", tag:""}
+        ],
+        core:"Hollow body 3×30s + Dead bug 3×12 + Pallof press 3×12 each",
+        cooldown:"Pec doorway stretch + thoracic foam roller 3 min",
+        cardio:"9° incline · 5.0–5.5 km/h · 15 min · HR 110–125"
+      },
+      {
+        name:"Day 3", tag:"Strength", tagClass:"tag-strength", focus:"Full body — hinge + overhead",
+        warmup:"5 min: hip hinge drill, cat-cow, shoulder circle, standing march",
+        exercises:[
+          {badge:"C", badgeClass:"badge-kb", name:"KB Deadlift", load:"18 kg", sets:"3 × 12", note:"Build reps at 18 kg. Slow 3 sec eccentric. Glutes lock out at top.", tag:"KB focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Squat to Overhead Press", load:"5 kg DB", sets:"3 × 12", note:"Full chain — squat → stand → press overhead.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"DB Farmer Carry", load:"8 kg each", sets:"3 × 25 m", note:"Heavier carry — core braced, no lean.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Step-Up (BW)", load:"BW", sets:"3 × 12 each", note:"Drive knee up, controlled descent.", tag:""}
+        ],
+        core:"Bird dog 3×12 + Posterior pelvic tilt 3×15 + Pallof press 3×15",
+        cooldown:"Full stretch sequence 5–7 min",
+        cardio:"9° incline · 5.0–5.5 km/h · 15 min · HR 110–125"
+      }
+    ]
+  },
+  {
+    week:6, focus:"4 sets on compound — DB Squat 6 kg/side · KB DL 18 kg",
+    days:[
+      {
+        name:"Day 1", tag:"Strength", tagClass:"tag-strength", focus:"Lower body — squat volume",
+        warmup:"5 min: glute activation band, hip circle, ankle mobility",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Squat", load:"6 kg/side", sets:"4 × 12", note:"Extra set — increase total volume for muscle stimulus.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Speed Squat (BW)", load:"BW", sets:"3 × 10", note:"Explosive intent, land soft. Builds power output.", tag:""},
+          {badge:"1", badgeClass:"badge-kb", name:"KB Deadlift", load:"18 kg", sets:"3 × 12", note:"Solid 3×12 at 18 kg. Hip hinge groove is forming.", tag:"KB focus"},
+          {badge:"2", badgeClass:"badge-acc", name:"Hip Thrust (BW)", load:"BW", sets:"3 × 15", note:"Progression from glute bridge — full hip extension.", tag:""}
+        ],
+        core:"Dead bug 3×15 + Pallof press 3×15 each + Hollow body 3×35s",
+        cooldown:"Hip flexor + pigeon + foam roller TFL",
+        cardio:"9° incline · 5.0–5.5 km/h · 15 min · HR 112–125"
+      },
+      {
+        name:"Day 2", tag:"Strength", tagClass:"tag-strength", focus:"Upper body — pull emphasis",
+        warmup:"5 min: band pull-apart ×20, wall angel ×15, doorway pec stretch",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Shoulder Press", load:"8 kg each", sets:"4 × 10", note:"Overhead strength — 4th set added. Core braced throughout.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Pike Push-Up", load:"BW", sets:"3 × 10", note:"Overhead pattern, shoulder girdle strength.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"DB Bent-Over Row", load:"8 kg each arm", sets:"4 × 12 each", note:"Volume match — 4 sets. Left arm priority.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Prone Y-T-W", load:"BW", sets:"3 × 12 each", note:"Rear delt + trap — posture maintenance.", tag:""}
+        ],
+        core:"Hollow body 3×35s + Pallof press 3×15 + Dead bug 3×15",
+        cooldown:"Extended pec + thoracic 5 min",
+        cardio:"9° incline · 5.0–5.5 km/h · 15 min · HR 112–125"
+      },
+      {
+        name:"Day 3", tag:"Strength", tagClass:"tag-strength", focus:"Full body — loaded circuit",
+        warmup:"5 min: full body circuit prep",
+        exercises:[
+          {badge:"C", badgeClass:"badge-kb", name:"KB Deadlift", load:"18 kg", sets:"4 × 12", note:"4 sets — biggest posterior chain stimulus yet. Control descent every rep.", tag:"KB focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Bear Crawl Forward + Back", load:"BW", sets:"3 × 10 m", note:"Shoulder stability, core anti-rotation, functional.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"DB Suitcase Carry", load:"8 kg one side", sets:"3 × 25 m each", note:"Oblique + QL demand increases with heavier load.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Wall Sit — loaded", load:"8 kg on thighs", sets:"3 × 30s", note:"Loaded wall sit — quad endurance challenge.", tag:""}
+        ],
+        core:"Bird dog 3×15 + Posterior pelvic tilt 3×15 + Pallof press 3×15",
+        cooldown:"Full body 8 min stretch",
+        cardio:"9° incline · 5.0–5.5 km/h · 15 min · HR 112–125"
+      }
+    ]
+  },
+  {
+    week:7, focus:"Density — shorter rest · DB Squat 7 kg/side · KB DL 18 kg",
+    days:[
+      {
+        name:"Day 1", tag:"Strength", tagClass:"tag-strength", focus:"Lower body — density",
+        warmup:"5 min standard + 2 min fast band walk",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Squat", load:"7 kg/side", sets:"4 × 12", note:"Step to 7 kg/side. Rest 60 sec between sets — density training.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Bulgarian Split Squat", load:"BW", sets:"3 × 15 each", note:"60 sec rest — longer set. Hip flexor flexibility improving.", tag:""},
+          {badge:"1", badgeClass:"badge-kb", name:"KB Deadlift", load:"18 kg", sets:"4 × 12", note:"4 sets at 18 kg. 60 sec rest. Build work capacity.", tag:"KB focus"},
+          {badge:"2", badgeClass:"badge-acc", name:"Single-Leg Deadlift", load:"BW", sets:"3 × 10 each", note:"Balance + hip hinge. Functional carry prep.", tag:""}
+        ],
+        core:"Dead bug 3×15 + Hollow body 3×40s + Pallof press 3×15",
+        cooldown:"Hip flexor + quad + pigeon 6 min",
+        cardio:"9° incline · 5.0–5.5 km/h · 15 min · HR 112–125"
+      },
+      {
+        name:"Day 2", tag:"Strength", tagClass:"tag-strength", focus:"Upper body — density push-pull",
+        warmup:"5 min: band complex — pull-apart, Y, face pull ×12 each",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Chest Press", load:"8 kg each", sets:"4 × 12", note:"60 sec rest — maintain technique at this load.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Push-Up + Shoulder Tap", load:"BW", sets:"3 × 10", note:"Anti-rotation core engagement after each rep.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"DB Bent-Over Row", load:"8 kg each arm", sets:"4 × 12 each", note:"Superset with press for time efficiency.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Face Pull + External Rotation", load:"Band", sets:"3 × 15", note:"Posture — shoulder capsule health. Never skip.", tag:""}
+        ],
+        core:"Pallof press 3×15 + Hollow body 3×40s + Dead bug 3×15",
+        cooldown:"Pec + thoracic 5 min foam roller",
+        cardio:"9° incline · 5.0–5.5 km/h · 15 min · HR 112–125"
+      },
+      {
+        name:"Day 3", tag:"Strength", tagClass:"tag-strength", focus:"Full body — functional load",
+        warmup:"5 min: hip hinge, shoulder mobility, standing march",
+        exercises:[
+          {badge:"C", badgeClass:"badge-kb", name:"KB Deadlift", load:"18 kg", sets:"4 × 15", note:"Highest volume of the block — 4×15 at 18 kg.", tag:"KB focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Mountain Climber", load:"BW", sets:"3 × 20", note:"Metabolic stimulus, trunk control.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"DB Farmer Carry", load:"8 kg each", sets:"3 × 30 m", note:"Longer carry — builds work capacity.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Reverse Nordic Curl", load:"BW", sets:"3 × 8", note:"Hamstring eccentric — supported, kneel on pad.", tag:""}
+        ],
+        core:"Bird dog 3×15 + Posterior pelvic tilt 3×15 + Pallof press 3×15",
+        cooldown:"Full body 10 min — hips + pecs priority",
+        cardio:"9° incline · 5.0–5.5 km/h · 15 min · HR 112–125"
+      }
+    ]
+  },
+  {
+    week:8, focus:"Deload — active recovery",
+    days:[
+      {
+        name:"Day 1", tag:"Deload", tagClass:"tag-deload", focus:"Lower — reduce load 40%",
+        warmup:"5 min standard",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Squat", load:"5 kg/side", sets:"3 × 10", note:"Deload — reset joints, reinforce pattern.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Glute Bridge", load:"BW", sets:"3 × 12", note:"Rest posterior chain.", tag:""},
+          {badge:"1", badgeClass:"badge-kb", name:"KB Deadlift", load:"16 kg", sets:"2 × 8", note:"Drop back to 16 kg — active recovery.", tag:"KB focus"},
+          {badge:"2", badgeClass:"badge-acc", name:"Lateral Band Walk", load:"Band", sets:"2 × 15 each", note:"Maintenance.", tag:""}
+        ],
+        core:"Dead bug 2×10 + Posterior pelvic tilt 2×12",
+        cooldown:"8 min extended mobility — hip flexor priority",
+        cardio:"9° incline · 5.0–5.5 km/h · 10 min · HR 108–120"
+      },
+      {
+        name:"Day 2", tag:"Deload", tagClass:"tag-deload", focus:"Upper — mobility focus",
+        warmup:"5 min: wall angel ×15, pec stretch, band pull-apart",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Shoulder Press", load:"5 kg each", sets:"3 × 10", note:"Deload — full ROM priority.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Knee Push-Up", load:"BW", sets:"2 × 10", note:"Reduce intensity.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"Scapular Wall Slide", load:"BW", sets:"3 × 12", note:"Active recovery + posture.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Face Pull band", load:"Light band", sets:"3 × 15", note:"Rear delt maintenance.", tag:""}
+        ],
+        core:"Hollow body 2×20s + Pallof press 2×10",
+        cooldown:"Thoracic foam roller 5 min + doorway pec stretch",
+        cardio:"9° incline · 5.0–5.5 km/h · 10 min · HR 108–120"
+      },
+      {
+        name:"Day 3", tag:"Deload", tagClass:"tag-deload", focus:"Full body — light active recovery",
+        warmup:"5 min full body",
+        exercises:[
+          {badge:"C", badgeClass:"badge-kb", name:"KB Deadlift", load:"16 kg", sets:"2 × 8", note:"Deload load — feel the movement, don't push it.", tag:"KB focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"BW Squat", load:"BW", sets:"3 × 12", note:"Slow tempo — feel movement.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"Farmer Carry", load:"5 kg each", sets:"2 × 20 m", note:"Light — maintain carry pattern.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Wall Sit", load:"BW", sets:"2 × 20s", note:"Reduced.", tag:""}
+        ],
+        core:"Dead bug 2×10 + Bird dog 2×10",
+        cooldown:"10 min full body stretch — all major muscles",
+        cardio:"9° incline · 5.0–5.5 km/h · 10 min · HR 108–120"
+      }
+    ]
+  }
+];
+
+const phase3 = [
+  {
+    week:9, focus:"Peak block — DB Squat 7.5 kg/side · KB DL 18 kg",
+    days:[
+      {
+        name:"Day 1", tag:"Strength", tagClass:"tag-strength", focus:"Lower body — heavy squat",
+        warmup:"6 min: band walk + hip hinge + hip flexor + ankle mob",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Squat", load:"7.5 kg/side", sets:"4 × 10", note:"Peak load. Reduce reps to maintain form at 7.5 kg. Heaviest squat of the program.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Bulgarian Split Squat", load:"5 kg DB", sets:"3 × 12 each", note:"Add light load to split squat pattern.", tag:""},
+          {badge:"1", badgeClass:"badge-kb", name:"KB Deadlift", load:"18 kg", sets:"4 × 10", note:"4 sets at 18 kg. Slow 4 sec eccentric. Maximum hamstring stretch.", tag:"KB focus"},
+          {badge:"2", badgeClass:"badge-acc", name:"Single-Leg Deadlift", load:"5 kg DB", sets:"3 × 10 each", note:"Balance + posterior chain.", tag:""}
+        ],
+        core:"Dead bug 3×15 + Hollow body 3×40s + Pallof press 3×15 each",
+        cooldown:"Hip flexor + pigeon + foam roller TFL 8 min",
+        cardio:"9° incline · 5.0–5.5 km/h · 15 min · HR 112–125"
+      },
+      {
+        name:"Day 2", tag:"Strength", tagClass:"tag-strength", focus:"Upper body — peak pull",
+        warmup:"6 min: band complex — pull-apart + face pull + Y raise ×15 each",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Bent-Over Row", load:"10 kg each arm", sets:"4 × 10", note:"Strongest upper body move of the program. Pull elbow past torso each rep.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Full Push-Up + Pause", load:"BW", sets:"3 × 12", note:"2 sec pause at bottom builds max tension.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"DB Chest Press", load:"8 kg each", sets:"3 × 12", note:"Maintain 8 kg press — quality volume.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Face Pull + Prone Y-T-W", load:"Band / BW", sets:"3 × 12 each", note:"Rear delt + posture — every upper day.", tag:""}
+        ],
+        core:"Hollow body 3×45s + Dead bug 3×15 + Pallof press 3×15",
+        cooldown:"Pec stretch + thoracic foam roller 5 min",
+        cardio:"9° incline · 5.0–5.5 km/h · 15 min · HR 112–125"
+      },
+      {
+        name:"Day 3", tag:"Strength", tagClass:"tag-strength", focus:"Full body — loaded carry",
+        warmup:"6 min full body",
+        exercises:[
+          {badge:"C", badgeClass:"badge-kb", name:"KB Deadlift", load:"18 kg", sets:"4 × 12", note:"4×12 at peak load. Every rep controlled. No ego — form is the goal.", tag:"KB focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Mountain Climber", load:"BW", sets:"3 × 20", note:"Metabolic + trunk stability.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"Farmer Carry", load:"10 kg each", sets:"3 × 30 m", note:"10 kg carry — mimics carrying children at gym weight.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Squat to Press", load:"5 kg DB", sets:"3 × 12", note:"Full chain — squat + overhead press.", tag:""}
+        ],
+        core:"Bird dog 3×15 + Posterior pelvic tilt 3×15 + Pallof press 3×15",
+        cooldown:"Full stretch 10 min",
+        cardio:"9° incline · 5.0–5.5 km/h · 15 min · HR 112–125"
+      }
+    ]
+  },
+  {
+    week:10, focus:"Max volume — 4×15 · DB Squat 7.5 kg/side · KB DL 18 kg",
+    days:[
+      {
+        name:"Day 1", tag:"Strength", tagClass:"tag-strength", focus:"Lower body — high volume",
+        warmup:"6 min full activation",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Squat", load:"7.5 kg/side", sets:"4 × 15", note:"Highest squat volume of the entire program. This is where the muscle is built.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Speed Squat (BW)", load:"BW", sets:"3 × 15", note:"Explosive — power development.", tag:""},
+          {badge:"1", badgeClass:"badge-kb", name:"KB Deadlift", load:"18 kg", sets:"4 × 15", note:"Highest deadlift volume. Grip endurance will be tested.", tag:"KB focus"},
+          {badge:"2", badgeClass:"badge-acc", name:"Lateral Band Walk", load:"Band", sets:"3 × 20 each", note:"Glute med endurance.", tag:""}
+        ],
+        core:"Dead bug 3×15 + Hollow body 3×45s + Pallof press 3×15",
+        cooldown:"Hip + glute 8 min",
+        cardio:"9° incline · 5.0–5.5 km/h · 15 min · HR 112–125"
+      },
+      {
+        name:"Day 2", tag:"Strength", tagClass:"tag-strength", focus:"Upper body — max pull volume",
+        warmup:"6 min: full band complex",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Bent-Over Row", load:"10 kg each arm", sets:"4 × 15", note:"Highest row volume — lat and rhomboid peak.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Push-Up Variations", load:"BW", sets:"4 × 12", note:"Rotate: wide / narrow / regular each set.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"DB Shoulder Press", load:"8 kg each", sets:"3 × 12", note:"Maintain overhead strength.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Prone Y-T-W", load:"3 kg plates", sets:"3 × 12 each", note:"Add 3 kg plate for rear delt intensity.", tag:""}
+        ],
+        core:"Hollow body 3×45s + Pallof press 3×15 + Dead bug 3×15",
+        cooldown:"Pec + rear delt + thoracic 6 min",
+        cardio:"9° incline · 5.0–5.5 km/h · 15 min · HR 112–125"
+      },
+      {
+        name:"Day 3", tag:"Strength", tagClass:"tag-strength", focus:"Full body — functional peak",
+        warmup:"6 min full body + hip hinge drill",
+        exercises:[
+          {badge:"C", badgeClass:"badge-kb", name:"KB Deadlift", load:"18 kg", sets:"4 × 15", note:"Peak volume. Control every rep — no bouncing KB between reps.", tag:"KB focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Bear Crawl Circuit", load:"BW", sets:"3 × 15 m", note:"Shoulder + core stability.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"Farmer Carry", load:"10 kg each", sets:"4 × 30 m", note:"Increase sets — strength endurance peak.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Reverse Nordic Curl", load:"BW", sets:"3 × 10", note:"Hamstring eccentric — injury prevention.", tag:""}
+        ],
+        core:"Dead bug 3×15 + Bird dog 3×15 + Pallof press 3×15 each",
+        cooldown:"10 min full body — every major muscle",
+        cardio:"9° incline · 5.0–5.5 km/h · 15 min · HR 112–125"
+      }
+    ]
+  },
+  {
+    week:11, focus:"Strength peak — 5 sets, lower reps · DB Squat 7.5 kg · KB DL 18 kg",
+    days:[
+      {
+        name:"Day 1", tag:"Strength", tagClass:"tag-strength", focus:"Lower — max strength",
+        warmup:"7 min full activation + mental focus",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Squat", load:"7.5 kg/side", sets:"5 × 8", note:"Highest intensity of the program. 5 sets × 8 reps. Rest 90 sec. This is the peak.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Bulgarian Split Squat", load:"8 kg DB", sets:"3 × 10 each", note:"Loaded split squat — strength peak.", tag:""},
+          {badge:"1", badgeClass:"badge-kb", name:"KB Deadlift", load:"18 kg", sets:"5 × 8", note:"5 sets × 8 at 18 kg. 90 sec rest. Max posterior chain stimulus.", tag:"KB focus"},
+          {badge:"2", badgeClass:"badge-acc", name:"Single-Leg Glute Bridge", load:"BW", sets:"3 × 15 each", note:"Endurance maintenance.", tag:""}
+        ],
+        core:"Dead bug 3×15 + Hollow body 3×50s + Pallof press 3×15 each",
+        cooldown:"Deep hip + thoracic 8 min",
+        cardio:"9° incline · 5.0–5.5 km/h · 15 min · HR 112–125"
+      },
+      {
+        name:"Day 2", tag:"Strength", tagClass:"tag-strength", focus:"Upper — strength peak pull",
+        warmup:"7 min: band complex + shoulder activation",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Bent-Over Row", load:"10 kg each arm", sets:"5 × 8", note:"5 sets × 8 — strength focus, 90 sec rest. Best upper body session of the 12 weeks.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Full Push-Up — chest to floor", load:"BW", sets:"4 × 12", note:"Maintain push quality.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"DB Chest Press", load:"10 kg each", sets:"3 × 8", note:"Test 10 kg press — only if form is solid.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Face Pull + External Rotation", load:"Band", sets:"3 × 15", note:"Shoulder health — never skip.", tag:""}
+        ],
+        core:"Hollow body 3×50s + Dead bug 3×15 + Pallof press 3×15",
+        cooldown:"Pec + thoracic + posterior capsule 8 min",
+        cardio:"9° incline · 5.0–5.5 km/h · 15 min · HR 112–125"
+      },
+      {
+        name:"Day 3", tag:"Strength", tagClass:"tag-strength", focus:"Full body — strength + carry",
+        warmup:"7 min full body",
+        exercises:[
+          {badge:"C", badgeClass:"badge-kb", name:"KB Deadlift", load:"18 kg", sets:"5 × 8", note:"5 sets — peak hinge strength. 90 sec rest. Every rep identical.", tag:"KB focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Mountain Climber + Push-Up combo", load:"BW", sets:"3 × 10+5", note:"10 mountain climbers + 5 push-ups per round.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"Farmer Carry", load:"10 kg each", sets:"4 × 35 m", note:"Max carry distance — functional fitness goal realised.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Squat to Press", load:"8 kg DB", sets:"3 × 10", note:"Heaviest full chain movement.", tag:""}
+        ],
+        core:"Bird dog 3×15 + Posterior pelvic tilt 3×15 + Pallof press 3×15",
+        cooldown:"Full 10 min stretch — celebrate week 11",
+        cardio:"9° incline · 5.0–5.5 km/h · 15 min · HR 112–125"
+      }
+    ]
+  },
+  {
+    week:12, focus:"Final week — active taper · Book InBody reassessment",
+    days:[
+      {
+        name:"Day 1", tag:"Taper", tagClass:"tag-taper", focus:"Lower — showcase strength",
+        warmup:"5 min standard",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Squat", load:"7.5 kg/side", sets:"3 × 10", note:"Taper — reduce volume, keep intensity. Show what 12 weeks built.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Bulgarian Split Squat", load:"BW", sets:"3 × 10 each", note:"Quality focus.", tag:""},
+          {badge:"1", badgeClass:"badge-kb", name:"KB Deadlift", load:"18 kg", sets:"3 × 10", note:"Taper sets. Best form of the program.", tag:"KB focus"},
+          {badge:"2", badgeClass:"badge-acc", name:"Single-Leg Glute Bridge", load:"BW", sets:"2 × 15", note:"Active recovery.", tag:""}
+        ],
+        core:"Dead bug 3×12 + Hollow body 3×40s + Pallof press 3×12",
+        cooldown:"10 min full stretch — celebrate 12 weeks",
+        cardio:"9° incline · 5.0–5.5 km/h · 15 min · HR 110–125"
+      },
+      {
+        name:"Day 2", tag:"Taper", tagClass:"tag-taper", focus:"Upper — best form session",
+        warmup:"5 min: full posture activation",
+        exercises:[
+          {badge:"C", badgeClass:"badge-compound", name:"DB Bent-Over Row", load:"10 kg each arm", sets:"3 × 10 each", note:"Showcase — best pulling form of 12 weeks.", tag:"Compound focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Full Push-Up", load:"BW", sets:"3 × 12", note:"Best push quality.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"DB Chest Press", load:"8 kg each", sets:"3 × 10", note:"Solid press — no grind reps.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Wall Angel + Scapular Slide", load:"BW", sets:"3 × 12", note:"Posture maintenance — habit formed.", tag:""}
+        ],
+        core:"Hollow body 3×40s + Pallof press 3×12 + Dead bug 3×12",
+        cooldown:"Thoracic foam roller + pec stretch 8 min",
+        cardio:"9° incline · 5.0–5.5 km/h · 15 min · HR 110–125"
+      },
+      {
+        name:"Day 3", tag:"Taper", tagClass:"tag-taper", focus:"Full body — final performance test",
+        warmup:"7 min: best warm-up of the 12 weeks",
+        exercises:[
+          {badge:"C", badgeClass:"badge-kb", name:"KB Deadlift", load:"18 kg", sets:"3 × 12", note:"Final test — strongest and most controlled deadlift of the program.", tag:"KB focus"},
+          {badge:"B", badgeClass:"badge-bw", name:"Full Circuit: 10 push-up + 15 squat + 10 mountain climber", load:"BW", sets:"3 rounds", note:"Functional fitness circuit. Rest 60 sec. This is why you trained.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"Farmer Carry", load:"10 kg each", sets:"3 × 40 m", note:"Longest carry of the program — functional goal achieved.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Squat to Overhead Press", load:"8 kg DB", sets:"3 × 10", note:"Full chain closing movement.", tag:""}
+        ],
+        core:"Dead bug 3×15 + Bird dog 3×15 + Pallof press 3×15 each + Hollow body 3×45s",
+        cooldown:"15 min full stretch — book InBody reassessment",
+        cardio:"9° incline · 5.0–5.5 km/h · 15 min · HR 110–125"
+      }
+    ]
+  }
+];
+
+function buildDay(d) {
+  return `
+    <div class="day-card">
+      <div class="day-header-row">
+        <div class="day-name">${d.name}</div>
+        <div class="day-tag ${d.tagClass}">${d.tag}</div>
+        <div class="day-focus-label">${d.focus}</div>
+      </div>
+      <div class="day-body">
+        <div class="section-mini">Warm-up</div>
+        <div class="warmup-text">${d.warmup}</div>
+        <div class="section-mini">Exercises</div>
+        <div class="ex-list">
+          ${d.exercises.map(e => `
+            <div class="ex-row">
+              <div class="ex-badge ${e.badgeClass}">${e.badge}</div>
+              <div>
+                <div class="ex-name">${e.name}${e.load ? `<span class="ex-load">${e.load}</span>` : ''}</div>
+                <div class="ex-note">${e.note}</div>
+                ${e.tag ? `<div class="ex-tag">${e.tag}</div>` : ''}
+              </div>
+              <div class="ex-sets">${e.sets}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="section-mini">Core (trunk protocol)</div>
+        <div class="core-box">${d.core}</div>
+        <div class="section-mini">Cool-down</div>
+        <div class="cooldown-box">${d.cooldown}</div>
+        <div class="cardio-bar">
+          <div class="cardio-icon">&#9829;</div>
+          <div>
+            <div class="cardio-label">Zone 2 · Treadmill · 5.0–5.5 km/h</div>
+            <div class="cardio-detail">${d.cardio}</div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function buildWeek(wd, openFirst) {
+  const wc = document.createElement('div');
+  wc.className = 'week-card';
+  wc.innerHTML = `
+    <div class="week-header${openFirst ? ' open' : ''}" onclick="toggleWeek(this)">
+      <div>
+        <div class="week-label">Week ${wd.week}</div>
+        <div class="week-focus">${wd.focus}</div>
+      </div>
+      <div class="week-chevron${openFirst ? ' open' : ''}">&#9660;</div>
+    </div>
+    <div class="week-body${openFirst ? ' open' : ''}">
+      <div class="day-grid">${wd.days.map(d => buildDay(d)).join('')}</div>
+    </div>`;
+  return wc;
+}
+
+function buildPhase(listId, data) {
+  const container = document.getElementById(listId);
+  data.forEach((wd, i) => container.appendChild(buildWeek(wd, i === 0)));
+}
+
+function toggleWeek(header) {
+  const body = header.nextElementSibling;
+  const chevron = header.querySelector('.week-chevron');
+  const open = body.classList.contains('open');
+  body.classList.toggle('open', !open);
+  header.classList.toggle('open', !open);
+  chevron.classList.toggle('open', !open);
+}
+
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+buildPhase('p1-list', phase1);
+buildPhase('p2-list', phase2);
+buildPhase('p3-list', phase3);
+</script>
+</body>
+</html>
