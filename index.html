@@ -673,6 +673,7 @@
     </div>
   </div>
 
+
 </main>
 
 <footer>
@@ -1251,6 +1252,25 @@ function buildDay(d) {
           <div>
             <div class="cardio-label">Zone 2 · Treadmill · 5.0–5.5 km/h</div>
             <div class="cardio-detail">${d.cardio}</div>
+          </div>
+        </div>
+        <div style="margin-top:14px;border:1px solid var(--border-light);border-radius:var(--radius-md);overflow:hidden;">
+          <div style="background:#1D9E75;padding:9px 14px;display:flex;align-items:center;gap:8px;cursor:pointer;" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';">
+            <span style="font-size:13px;color:white;">&#9997;</span>
+            <span style="font-size:12px;font-weight:500;color:white;">Log session feedback</span>
+            <span style="font-size:10px;color:rgba(255,255,255,0.7);margin-left:auto;">tap to open ↓</span>
+          </div>
+          <div style="display:none;">
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSchmpJeRZc9tfjgT_rFx58s55S233bgELVMsxw4-ESLx3aGTA/viewform?embedded=true"
+              width="100%"
+              height="742"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0"
+              style="display:block;">
+              Loading…
+            </iframe>
           </div>
         </div>
       </div>
