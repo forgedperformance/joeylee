@@ -249,6 +249,36 @@
   .phase-header.p2 .phase-desc { color: var(--blue); }
   .phase-header.p3 .phase-desc { color: var(--amber); }
 
+  /* WEEK JUMP BAR */
+  .week-jump-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .week-jump-btn {
+    padding: 7px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--border-light);
+    background: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+  .week-jump-btn:hover {
+    background: var(--gray-50);
+    border-color: var(--gray-200);
+    color: var(--text);
+    transform: translateY(-1px);
+  }
+  .week-jump-btn:active {
+    transform: translateY(0);
+  }
+
   /* WEEK ACCORDION */
   .week-list { display: flex; flex-direction: column; gap: 10px; }
   .week-card {
@@ -576,6 +606,12 @@
       <div class="phase-title">Phase 1 — Foundation &amp; Activation (Weeks 1–4)</div>
       <div class="phase-desc">Compound movements using Dumbbells &amp; Kettlebell · Zone 2 cardio 10–12 min · Learn patterns and build posture habits.</div>
     </div>
+    <div class="week-jump-bar">
+      <button class="week-jump-btn" onclick="jumpToWeek(1)">Week 1</button>
+      <button class="week-jump-btn" onclick="jumpToWeek(2)">Week 2</button>
+      <button class="week-jump-btn" onclick="jumpToWeek(3)">Week 3</button>
+      <button class="week-jump-btn" onclick="jumpToWeek(4)">Week 4</button>
+    </div>
     <div class="week-list" id="p1-list"></div>
   </div>
 
@@ -585,6 +621,12 @@
       <div class="phase-title">Phase 2 — Build &amp; Burn (Weeks 5–8)</div>
       <div class="phase-desc">Compound movements using Dumbbells &amp; Kettlebell · Zone 2 cardio 15 min · Volume and density increase.</div>
     </div>
+    <div class="week-jump-bar">
+      <button class="week-jump-btn" onclick="jumpToWeek(5)">Week 5</button>
+      <button class="week-jump-btn" onclick="jumpToWeek(6)">Week 6</button>
+      <button class="week-jump-btn" onclick="jumpToWeek(7)">Week 7</button>
+      <button class="week-jump-btn" onclick="jumpToWeek(8)">Week 8</button>
+    </div>
     <div class="week-list" id="p2-list"></div>
   </div>
 
@@ -593,6 +635,12 @@
     <div class="phase-header p3">
       <div class="phase-title">Phase 3 — Peak &amp; Recomp (Weeks 9–12)</div>
       <div class="phase-desc">Compound movements using Dumbbells &amp; Kettlebell · Zone 2 cardio 15 min · Strength peak then taper into reassessment.</div>
+    </div>
+    <div class="week-jump-bar">
+      <button class="week-jump-btn" onclick="jumpToWeek(9)">Week 9</button>
+      <button class="week-jump-btn" onclick="jumpToWeek(10)">Week 10</button>
+      <button class="week-jump-btn" onclick="jumpToWeek(11)">Week 11</button>
+      <button class="week-jump-btn" onclick="jumpToWeek(12)">Week 12</button>
     </div>
     <div class="week-list" id="p3-list"></div>
   </div>
@@ -774,7 +822,7 @@ const phase1 = [
     ]
   },
   {
-    week:3, focus:"Tempo + Pallof press introduced · DB Squat 5 kg/side · KB DL 16 kg",
+    week:3, focus:"Tempo + Pallof press · Straight Arm Lat Pulldown & Tricep Extension added · DB Squat 5 kg/side · KB DL 16 kg",
     days:[
       {
         name:"Day 1", tag:"Strength", tagClass:"tag-strength", focus:"Lower body — tempo squats",
@@ -794,9 +842,10 @@ const phase1 = [
         warmup:"5 min: wall angel ×15, band pull-apart ×15, shoulder mobility circles",
         exercises:[
           {badge:"C", badgeClass:"badge-compound", name:"DB Chest Press", load:"5 kg each", sets:"3 × 15", note:"Increase reps. Scapula retracted, no shrug. Feel the chest — not just arms.", tag:"Compound focus"},
-          {badge:"B", badgeClass:"badge-bw", name:"Diamond or Wide Push-Up", load:"BW", sets:"3 × 10", note:"Vary grip each set to hit different chest fibres.", tag:""},
+          {badge:"B", badgeClass:"badge-bw", name:"Push-Up", load:"BW", sets:"3 × 10", note:"Standard hand width, chest to floor, controlled tempo.", tag:""},
           {badge:"1", badgeClass:"badge-acc", name:"DB Bent-Over Row", load:"5 kg", sets:"3 × 15 each", note:"Elbow close to body. Squeeze lat at top. Left arm focus.", tag:""},
-          {badge:"2", badgeClass:"badge-acc", name:"Prone Y-T-W", load:"BW", sets:"3 × 10 each", note:"Lying face down — rear delt + trap activation.", tag:""}
+          {badge:"2", badgeClass:"badge-acc", name:"Straight Arm Lat Pulldown", load:"7.5 kg", sets:"3 × 10", note:"Arms stay straight, pull bar down to thighs using lats. Counters round shoulder. Progress to 10 kg max.", tag:""},
+          {badge:"3", badgeClass:"badge-acc", name:"Lying Tricep Extension", load:"2 kg per side", sets:"3 × 10", note:"Lying on bench, elbows fixed pointing up, lower DBs toward ears then extend.", tag:""}
         ],
         core:"Pallof press 3×12 + Hollow body 3×30s + Dead bug 3×12",
         cooldown:"Pec stretch + thoracic foam roller 2 min",
@@ -808,7 +857,7 @@ const phase1 = [
         exercises:[
           {badge:"C", badgeClass:"badge-kb", name:"KB Deadlift", load:"16 kg", sets:"3 × 15", note:"Highest volume at 16 kg this phase. Control every rep — no bouncing.", tag:"KB focus"},
           {badge:"B", badgeClass:"badge-bw", name:"Squat to Press", load:"BW + 3 kg DB", sets:"3 × 12", note:"Squat down, press arms overhead on stand. Full body chain.", tag:""},
-          {badge:"1", badgeClass:"badge-acc", name:"DB Suitcase Carry", load:"5 kg one side", sets:"3 × 20 m each", note:"Lateral core challenge — oblique + QL stability.", tag:""},
+          {badge:"1", badgeClass:"badge-acc", name:"Farmer's Walk", load:"7.5 kg one side", sets:"3 × 20 m each", note:"Unilateral load — challenges core and lateral stability while walking. Switch sides each set.", tag:""},
           {badge:"2", badgeClass:"badge-acc", name:"Calf Raise (BW)", load:"BW", sets:"3 × 20", note:"Endurance base, knee-over-toe.", tag:""}
         ],
         core:"Bird dog 3×12 + Posterior pelvic tilt 3×15 + Pallof press 3×12 each",
@@ -1283,6 +1332,7 @@ function buildDay(d) {
 function buildWeek(wd, openFirst) {
   const wc = document.createElement('div');
   wc.className = 'week-card';
+  wc.id = `week-${wd.week}`;
   wc.innerHTML = `
     <div class="week-header${openFirst ? ' open' : ''}" onclick="toggleWeek(this)">
       <div>
@@ -1300,6 +1350,25 @@ function buildWeek(wd, openFirst) {
 function buildPhase(listId, data) {
   const container = document.getElementById(listId);
   data.forEach((wd, i) => container.appendChild(buildWeek(wd, i === 0)));
+}
+
+function jumpToWeek(weekNum) {
+  // Close all weeks first
+  document.querySelectorAll('.week-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.week-header').forEach(h => h.classList.remove('open'));
+  document.querySelectorAll('.week-chevron').forEach(c => c.classList.remove('open'));
+
+  // Open the target week
+  const target = document.getElementById(`week-${weekNum}`);
+  if (target) {
+    const header = target.querySelector('.week-header');
+    const body = target.querySelector('.week-body');
+    const chevron = target.querySelector('.week-chevron');
+    header.classList.add('open');
+    body.classList.add('open');
+    chevron.classList.add('open');
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 function toggleWeek(header) {
