@@ -225,10 +225,43 @@
   .tab-btn.active.p2 { background: var(--blue-mid); }
   .tab-btn.active.p3 { background: var(--amber-dark); }
   .tab-btn.active.nut { background: #3B6D11; }
+  .tab-btn.active.fuel { background: #0C447C; }
+  .tab-btn.active.sleep { background: #4B3B8F; }
   .tab-btn.active.trunk { background: #712B13; }
 
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
+  /* SELF-SERVE ENGINES */
+  .eng-intro{background:var(--blue-light);border:1px solid var(--border-light);border-radius:var(--radius-md);padding:16px 18px;font-size:13px;color:var(--text-muted);margin-bottom:18px;line-height:1.55}
+  .eng-intro strong{color:var(--text)}
+  .eng-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:16px}
+  .eng-field{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-md);padding:12px 14px}
+  .eng-field label{display:block;font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+  .eng-field input,.eng-field select{width:100%;border:none;border-bottom:1px solid var(--border);background:transparent;font-family:'DM Sans',sans-serif;font-size:17px;font-weight:500;color:var(--text);padding:2px 0 5px}
+  .eng-field input:focus,.eng-field select:focus{outline:none;border-bottom-color:var(--green)}
+  .eng-btn{background:var(--green);color:#fff;border:none;border-radius:var(--radius-md);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;padding:13px 28px;cursor:pointer;transition:background .15s}
+  .eng-btn:hover{background:var(--green-mid)}
+  .eng-result{margin-top:22px}
+  .eng-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+  .eng-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px;text-align:center}
+  .eng-card.hl{border-color:var(--green);background:var(--green-light)}
+  .eng-card .l{font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--text-faint)}
+  .eng-card .v{font-family:'DM Serif Display',serif;font-size:26px;color:var(--green-dark);margin-top:4px;line-height:1.1}
+  .eng-card .s{font-size:11px;color:var(--text-muted);margin-top:2px}
+  .eng-sub{font-size:13px;font-weight:600;color:var(--text);text-transform:uppercase;letter-spacing:.5px;margin:18px 0 10px}
+  .eng-tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+  .eng-ptab{background:var(--gray-100);border:none;border-radius:6px;padding:7px 14px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;color:var(--text-muted);cursor:pointer}
+  .eng-ptab.on{background:var(--green-dark);color:#fff}
+  .eng-row{display:flex;justify-content:space-between;padding:9px 14px;background:var(--white);border:1px solid var(--border-light);border-radius:8px;margin-bottom:6px;font-size:13px}
+  .eng-row .n{color:var(--text-muted)}
+  .eng-row .g{font-weight:600;color:var(--text)}
+  .eng-bed{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+  .eng-bedcard{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px;text-align:center}
+  .eng-bedcard.hl{border-color:var(--green);background:var(--green-light)}
+  .eng-bedcard .c{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-faint)}
+  .eng-bedcard .t{font-family:'DM Serif Display',serif;font-size:24px;color:var(--green-dark);margin:4px 0}
+  .eng-bedcard .d{font-size:11px;color:var(--text-muted)}
+  .eng-note{font-size:11.5px;color:var(--text-faint);margin-top:14px;line-height:1.5;border-top:1px solid var(--border-light);padding-top:12px}
 
   /* PHASE HEADER */
   .phase-header {
@@ -597,6 +630,8 @@
     <button class="tab-btn p2" onclick="switchTab('phase2', this)">Phase 2 · Wk 5–8</button>
     <button class="tab-btn p3" onclick="switchTab('phase3', this)">Phase 3 · Wk 9–12</button>
     <button class="tab-btn nut" onclick="switchTab('nutrition', this)">Nutrition</button>
+    <button class="tab-btn fuel" onclick="switchTab('fuel', this)">Fuel Engine</button>
+    <button class="tab-btn sleep" onclick="switchTab('sleep', this)">Sleep Engine</button>
     <button class="tab-btn trunk" onclick="switchTab('trunk', this)">Trunk Protocol</button>
   </nav>
 
@@ -681,6 +716,42 @@
         <div class="nut-item" style="color:#D85A30;">Avoid high heels — worsens lumbar lordosis</div>
       </div>
     </div>
+  </div>
+
+  <!-- FUEL ENGINE (self-serve) -->
+  <div class="tab-panel" id="fuel">
+    <div class="eng-intro">
+      <strong>Fuel Engine</strong> — your self-serve nutrition calculator. Your tailored plan in the Nutrition tab stays your primary guide; use this to recalculate targets if your weight or activity changes. Enter your numbers and it returns calories, macros, and a body-fat trajectory.
+    </div>
+    <div class="eng-form" id="fuel-form">
+      <div class="eng-field"><label>Bodyweight (kg)</label><input id="ff-bw" type="number" value="50" step="0.1"></div>
+      <div class="eng-field"><label>Height (cm)</label><input id="ff-h" type="number" value="161"></div>
+      <div class="eng-field"><label>Age</label><input id="ff-age" type="number" value="36"></div>
+      <div class="eng-field"><label>Sex</label><select id="ff-sex"><option value="f" selected>Female</option><option value="m">Male</option></select></div>
+      <div class="eng-field"><label>Daily activity</label><select id="ff-act"><option value="1.3">Sedentary</option><option value="1.45" selected>Lightly active</option><option value="1.6">Active job</option></select></div>
+      <div class="eng-field"><label>Goal</label><select id="ff-goal"><option value="recomp" selected>Recomposition</option><option value="lean">Lean build</option><option value="cut">Reveal / cut</option></select></div>
+      <div class="eng-field"><label>Current body fat %</label><input id="ff-bf" type="number" value="32" step="0.5"></div>
+      <div class="eng-field"><label>Strength sessions / week</label><select id="ff-sess"><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option></select></div>
+    </div>
+    <button class="eng-btn" onclick="runFuel()">Calculate My Fuel Targets</button>
+    <div id="fuel-out"></div>
+  </div>
+
+  <!-- SLEEP ENGINE (self-serve) -->
+  <div class="tab-panel" id="sleep">
+    <div class="eng-intro">
+      <strong>Sleep Engine</strong> — recovery is where results are built. This times your bedtimes and naps to complete 90-minute sleep cycles so you wake refreshed and train at full output. Enter your schedule below.
+    </div>
+    <div class="eng-form" id="sleep-form">
+      <div class="eng-field"><label>When do you train?</label><select id="sf-when"><option value="morning">Morning</option><option value="evening" selected>Evening</option><option value="midday">Midday</option></select></div>
+      <div class="eng-field"><label>Must wake by</label><input id="sf-wake" type="time" value="06:30"></div>
+      <div class="eng-field"><label>Training time</label><input id="sf-train" type="time" value="18:00"></div>
+      <div class="eng-field"><label>Time to fall asleep</label><select id="sf-lat"><option value="10">~10 min</option><option value="15" selected>~15 min</option><option value="25">~25 min</option></select></div>
+      <div class="eng-field"><label>Can you nap?</label><select id="sf-nap"><option value="yes" selected>Yes</option><option value="no">No</option></select></div>
+      <div class="eng-field"><label>Nap window</label><select id="sf-win"><option value="early">Early afternoon</option><option value="mid" selected>Mid afternoon</option><option value="flex">Flexible</option></select></div>
+    </div>
+    <button class="eng-btn" onclick="runSleep()">Build My Sleep Plan</button>
+    <div id="sleep-out"></div>
   </div>
 
   <!-- TRUNK -->
@@ -1390,6 +1461,84 @@ function switchTab(id, btn) {
 buildPhase('p1-list', phase1);
 buildPhase('p2-list', phase2);
 buildPhase('p3-list', phase3);
+
+/* ===== SELF-SERVE FUEL ENGINE ===== */
+function runFuel(){
+  const v=id=>parseFloat(document.getElementById(id).value);
+  const bw=v('ff-bw'),h=v('ff-h'),age=v('ff-age'),sex=document.getElementById('ff-sex').value,
+        act=v('ff-act'),goal=document.getElementById('ff-goal').value,bf=v('ff-bf'),sess=parseInt(document.getElementById('ff-sess').value);
+  const bmr=(sex==='m')?(10*bw+6.25*h-5*age+5):(10*bw+6.25*h-5*age-161);
+  const tdee=bmr*act;
+  const r=n=>Math.round(n/25)*25, r5=n=>Math.round(n/5)*5;
+  const PH={A:{n:'Build',tr:{lean:280,recomp:120,cut:-250},rs:{lean:0,recomp:-150,cut:-450},p:2.6,f:0.9},
+            B:{n:'Burn',tr:{lean:250,recomp:100,cut:-250},rs:{lean:-50,recomp:-180,cut:-480},p:2.7,f:0.9},
+            C:{n:'Peak',tr:{lean:100,recomp:0,cut:-350},rs:{lean:-250,recomp:-300,cut:-600},p:2.8,f:0.8}};
+  let tabs='',panels='';
+  Object.keys(PH).forEach((k,i)=>{
+    const p=PH[k],trK=r(tdee+p.tr[goal]),rsK=r(tdee+p.rs[goal]),pro=r5(bw*p.p),fat=r5(bw*p.f);
+    const cT=Math.max(0,r5((trK-pro*4-fat*9)/4)),cR=Math.max(0,r5((rsK-pro*4-fat*9)/4));
+    tabs+=`<button class="eng-ptab${i===0?' on':''}" onclick="fuelPhase('${k}',this)">Phase ${k} · ${p.n}</button>`;
+    panels+=`<div class="fuel-ph" id="fph-${k}" style="display:${i===0?'block':'none'}">
+      <div class="eng-cards">
+        <div class="eng-card hl"><div class="l">Training Day</div><div class="v">${trK}</div><div class="s">kcal</div></div>
+        <div class="eng-card"><div class="l">Rest Day</div><div class="v">${rsK}</div><div class="s">kcal</div></div>
+        <div class="eng-card"><div class="l">Protein</div><div class="v">${pro}</div><div class="s">g / day</div></div>
+      </div>
+      <div class="eng-row"><span class="n">Carbs (training)</span><span class="g">${cT} g</span></div>
+      <div class="eng-row"><span class="n">Carbs (rest)</span><span class="g">${cR} g</span></div>
+      <div class="eng-row"><span class="n">Fat</span><span class="g">${fat} g</span></div>
+    </div>`;
+  });
+  // BF trajectory
+  let bfRate=({3:0.30,4:0.40,5:0.45})[sess]||0.40;
+  if(goal==='cut')bfRate+=0.10; else if(goal==='recomp')bfRate-=0.15; else if(goal==='lean')bfRate-=0.05;
+  bfRate=Math.max(0.1,bfRate);
+  const lean1=sex==='m'?12:20, lean2=sex==='m'?10:18, floor=sex==='m'?6:14;
+  let cbf=bf,rows='',dl={4:1,8:1};
+  for(let w=1;w<=12;w++){const t=cbf<=lean2?0.5:cbf<=lean1?0.75:1;let wr=bfRate*t*(dl[w]?0.4:1);cbf=Math.max(floor,+(cbf-wr).toFixed(2));
+    if(w%4===0)rows+=`<div class="eng-row"><span class="n">Week ${w}</span><span class="g">~${cbf.toFixed(1)}%</span></div>`;}
+  const lost=(bf-cbf).toFixed(1);
+  document.getElementById('fuel-out').innerHTML=`<div class="eng-result">
+    <div class="eng-cards"><div class="eng-card"><div class="l">Maintenance</div><div class="v">${r(tdee)}</div><div class="s">kcal (TDEE)</div></div>
+      <div class="eng-card hl"><div class="l">Proj. BF · Wk 12</div><div class="v">~${cbf.toFixed(1)}%</div><div class="s">from ${bf}%</div></div>
+      <div class="eng-card"><div class="l">BF Loss Rate</div><div class="v">${bfRate.toFixed(2)}</div><div class="s">% / week</div></div></div>
+    <div class="eng-sub">Macros By Phase</div>
+    <div class="eng-tabs">${tabs}</div>${panels}
+    <div class="eng-sub">Body-Fat Trajectory (milestones)</div>${rows}
+    <div class="eng-note">Estimates only. Sustainable fat loss is ~1–3% body fat per month; the rate auto-slows as you lean out to protect muscle. Joey: this is a self-serve guide — your tailored Nutrition tab (TDEE 2,190, lactose-free sources) remains primary. Not medical advice.</div>
+  </div>`;
+}
+function fuelPhase(k,btn){document.querySelectorAll('.fuel-ph').forEach(p=>p.style.display='none');document.querySelectorAll('#fuel .eng-ptab').forEach(b=>b.classList.remove('on'));document.getElementById('fph-'+k).style.display='block';btn.classList.add('on');}
+
+/* ===== SELF-SERVE SLEEP ENGINE ===== */
+function runSleep(){
+  const tm=t=>{const[h,m]=t.split(':').map(Number);return h*60+m;};
+  const fm=min=>{min=((min%1440)+1440)%1440;let h=Math.floor(min/60),m=min%60,ap=h<12?'AM':'PM',hh=h%12||12;return `${hh}:${String(m).padStart(2,'0')} ${ap}`;};
+  const dur=mn=>{const h=Math.floor(mn/60),m=mn%60;return m?`${h}h ${m}m`:`${h}h`;};
+  const when=document.getElementById('sf-when').value,wake=tm(document.getElementById('sf-wake').value),
+        train=tm(document.getElementById('sf-train').value),lat=parseInt(document.getElementById('sf-lat').value),
+        nap=document.getElementById('sf-nap').value,win=document.getElementById('sf-win').value,C=90;
+  let beds='';[6,5,4].forEach(c=>{const b=wake-c*C-lat;beds+=`<div class="eng-bedcard${c===6?' hl':''}"><div class="c">${c} cycles</div><div class="t">${fm(b)}</div><div class="d">${dur(c*C)} asleep</div></div>`;});
+  let napHtml='';
+  if(nap==='yes'){
+    let ns={early:13*60,mid:14*60+30,flex:13*60+30}[win];
+    if(when==='evening'&&ns+90>train-180)ns=Math.max(13*60,train-180-90);
+    napHtml=`<div class="eng-sub">Strategic Naps</div>
+      <div class="eng-cards">
+        <div class="eng-card"><div class="l">Power Nap</div><div class="v" style="font-size:19px">${fm(ns)}</div><div class="s">20 min · alertness</div></div>
+        <div class="eng-card hl"><div class="l">Full Cycle</div><div class="v" style="font-size:19px">${fm(ns)}</div><div class="s">90 min · recovery</div></div>
+      </div>
+      <div class="eng-note">Power nap ends ${fm(ns+20)}; full cycle ends ${fm(ns+90)}. Avoid 40–60 min naps — you wake from deep sleep groggy. Naps kept clear of the 3 h before evening training.</div>`;
+  } else {
+    napHtml=`<div class="eng-note">No nap window — your night sleep carries recovery. Hit the highlighted bedtime and protect the first two cycles (deepest, most restorative).</div>`;
+  }
+  document.getElementById('sleep-out').innerHTML=`<div class="eng-result">
+    <div class="eng-sub">Optimal Bedtimes — Wake ${fm(wake)}</div>
+    <div class="eng-bed">${beds}</div>
+    ${napHtml}
+    <div class="eng-note">A cycle averages ~90 min but ranges 70–120 and varies by person — if you wake groggy, shift bedtime ±15 min over several nights. Waking at a cycle's end avoids grogginess (sleep inertia). Educational, not medical advice.</div>
+  </div>`;
+}
 </script>
 </body>
 </html>
