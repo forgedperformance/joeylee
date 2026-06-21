@@ -949,7 +949,7 @@ const phase1 = [
           {badge:"C", badgeClass:"badge-compound", name:"DB Squat", load:"5 kg/side", sets:"3 × 10", note:"Deload reps. Focus on depth and posture.", tag:"Compound focus"},
           {badge:"B", badgeClass:"badge-bw", name:"Glute Bridge", load:"BW", sets:"3 × 12", note:"Reset posterior chain.", tag:""},
           {badge:"1", badgeClass:"badge-kb", name:"KB Deadlift", load:"16 kg", sets:"2 × 8", note:"Reduce sets. Quality hip hinge only. No grind reps.", tag:"KB focus"},
-          {badge:"2", badgeClass:"badge-acc", name:"Band Clamshell", load:"Light band", sets:"2 × 15 each", note:"Maintenance volume.", tag:""}
+          {badge:"2", badgeClass:"badge-acc", name:"Seated Bicep Curl", load:"2.4–4 kg max", sets:"3 × 10", note:"Seated, controlled. Keep elbows pinned to sides — no swinging.", tag:""}
         ],
         core:"Dead bug 2×10 + Posterior pelvic tilt 2×12 + Bird dog 2×10",
         cooldown:"Extended hip flexor + thoracic stretch 8 min",
@@ -961,8 +961,9 @@ const phase1 = [
         exercises:[
           {badge:"C", badgeClass:"badge-compound", name:"DB Shoulder Press", load:"3 kg each", sets:"3 × 10", note:"Deload weight. Full ROM priority.", tag:"Compound focus"},
           {badge:"B", badgeClass:"badge-bw", name:"Knee Push-Up", load:"BW", sets:"3 × 10", note:"Regress — protect joints, maintain pattern.", tag:""},
-          {badge:"1", badgeClass:"badge-acc", name:"DB Single-Arm Row", load:"5 kg", sets:"2 × 12 each", note:"Left arm focus. Maintain muscle memory.", tag:""},
-          {badge:"2", badgeClass:"badge-acc", name:"Scapular Wall Slide", load:"BW", sets:"3 × 12", note:"Active recovery + posture.", tag:""}
+          {badge:"1", badgeClass:"badge-acc", name:"Tricep Cable Pulldown", load:"Light–moderate", sets:"2 × 12 each", note:"Accessory work. Elbows pinned to sides, full extension, controlled return.", tag:""},
+          {badge:"2", badgeClass:"badge-acc", name:"Scapular Wall Slide", load:"BW", sets:"3 × 12", note:"Active recovery + posture.", tag:""},
+          {badge:"3", badgeClass:"badge-acc", name:"Lat Pulldown", load:"10 kg max", sets:"3 × 10", note:"Controlled pull to upper chest. Shoulder blades down and back.", tag:""}
         ],
         core:"Hollow body 2×20s + Pallof press 2×10 each",
         cooldown:"Doorway pec stretch + foam roller thoracic 3 min",
@@ -975,7 +976,8 @@ const phase1 = [
           {badge:"C", badgeClass:"badge-kb", name:"KB Deadlift", load:"16 kg", sets:"2 × 8", note:"Deload sets. Slow and controlled. Feel hamstring stretch.", tag:"KB focus"},
           {badge:"B", badgeClass:"badge-bw", name:"BW Squat", load:"BW", sets:"3 × 12", note:"Slow tempo — reinforce DB squat pattern.", tag:""},
           {badge:"1", badgeClass:"badge-acc", name:"Farmer Carry", load:"3 kg each", sets:"2 × 20 m", note:"Light carry — maintain grip and core.", tag:""},
-          {badge:"2", badgeClass:"badge-acc", name:"Wall Sit", load:"BW", sets:"2 × 20s", note:"Reduced duration.", tag:""}
+          {badge:"2", badgeClass:"badge-acc", name:"Wall Sit", load:"BW", sets:"2 × 20s", note:"Reduced duration.", tag:""},
+          {badge:"3", badgeClass:"badge-acc", name:"Lying Tricep Extension", load:"2 kg per side", sets:"3 × 10", note:"Lying, elbows fixed. Lower behind head, extend without flaring.", tag:""}
         ],
         core:"Dead bug 2×10 + Bird dog 2×10 + Posterior pelvic tilt 2×12",
         cooldown:"Full body 10 min stretch — extra time on hip flexor and pec",
@@ -1425,7 +1427,11 @@ const DEMO_MAP = {
   "bird dog":"https://www.youtube.com/results?search_query=bird+dog+exercise+form",
   "hollow body hold":"https://www.youtube.com/results?search_query=hollow+body+hold+progression",
   "pallof press":"https://www.youtube.com/results?search_query=pallof+press+band+form",
-  "posterior pelvic tilt hold":"https://www.youtube.com/results?search_query=posterior+pelvic+tilt+exercise"
+  "posterior pelvic tilt hold":"https://www.youtube.com/results?search_query=posterior+pelvic+tilt+exercise",
+  "seated bicep curl":"https://www.youtube.com/results?search_query=seated+dumbbell+bicep+curl+form",
+  "lat pulldown":"https://www.youtube.com/results?search_query=lat+pulldown+proper+form",
+  "lying tricep extension":"https://www.youtube.com/results?search_query=lying+dumbbell+tricep+extension+form",
+  "tricep cable pulldown":"https://www.youtube.com/results?search_query=tricep+cable+pushdown+form"
 };
 function demoLink(e){
   if(e.video) return e.video;                       // your own video wins
