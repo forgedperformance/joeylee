@@ -419,6 +419,8 @@
   .badge-acc { background: var(--gray-100); color: var(--gray-600); }
   .badge-kb { background: var(--amber-light); color: var(--amber-dark); }
   .ex-name { font-size: 13px; font-weight: 500; color: var(--text); }
+  .ex-demo { font-size: 10px; font-weight: 600; color: var(--green); text-decoration: none; background: var(--green-light); padding: 1px 7px; border-radius: 20px; margin-left: 6px; white-space: nowrap; vertical-align: middle; }
+  .ex-demo:hover { background: var(--green); color: #fff; }
   .ex-load {
     display: inline-block;
     font-size: 10px;
@@ -761,27 +763,27 @@
       <div class="ex-list">
         <div class="ex-row">
           <div class="ex-badge badge-compound">1</div>
-          <div><div class="ex-name">Dead Bug</div><div class="ex-note">Deep core activation without lumbar load. Counters lordosis.</div><div class="ex-tag">3 × 10 each side — every session</div></div>
+          <div><div class="ex-name">Dead Bug <a class="ex-demo" href="https://www.youtube.com/results?search_query=dead+bug+exercise+form" target="_blank" rel="noopener" title="Watch demo">▶ demo</a></div><div class="ex-note">Deep core activation without lumbar load. Counters lordosis.</div><div class="ex-tag">3 × 10 each side — every session</div></div>
           <div class="ex-sets">Core</div>
         </div>
         <div class="ex-row">
           <div class="ex-badge badge-compound">2</div>
-          <div><div class="ex-name">Posterior Pelvic Tilt Hold</div><div class="ex-note">Supine, flatten lumbar to floor, hold 5 sec. Directly corrects 47° lordosis.</div><div class="ex-tag">3 × 12 holds — every session</div></div>
+          <div><div class="ex-name">Posterior Pelvic Tilt Hold <a class="ex-demo" href="https://www.youtube.com/results?search_query=posterior+pelvic+tilt+exercise" target="_blank" rel="noopener" title="Watch demo">▶ demo</a></div><div class="ex-note">Supine, flatten lumbar to floor, hold 5 sec. Directly corrects 47° lordosis.</div><div class="ex-tag">3 × 12 holds — every session</div></div>
           <div class="ex-sets">Corrective</div>
         </div>
         <div class="ex-row">
           <div class="ex-badge badge-compound">3</div>
-          <div><div class="ex-name">Bird Dog</div><div class="ex-note">Opposite arm-leg extension. Anti-rotation + lumbar stability.</div><div class="ex-tag">3 × 10 each side — every session</div></div>
+          <div><div class="ex-name">Bird Dog <a class="ex-demo" href="https://www.youtube.com/results?search_query=bird+dog+exercise+form" target="_blank" rel="noopener" title="Watch demo">▶ demo</a></div><div class="ex-note">Opposite arm-leg extension. Anti-rotation + lumbar stability.</div><div class="ex-tag">3 × 10 each side — every session</div></div>
           <div class="ex-sets">Core</div>
         </div>
         <div class="ex-row">
           <div class="ex-badge badge-compound">4</div>
-          <div><div class="ex-name">Hollow Body Hold</div><div class="ex-note">Anterior core compression. Wk 1–4 knees bent, wk 5+ legs straight.</div><div class="ex-tag">3 × 20–45 sec — progresses each phase</div></div>
+          <div><div class="ex-name">Hollow Body Hold <a class="ex-demo" href="https://www.youtube.com/results?search_query=hollow+body+hold+progression" target="_blank" rel="noopener" title="Watch demo">▶ demo</a></div><div class="ex-note">Anterior core compression. Wk 1–4 knees bent, wk 5+ legs straight.</div><div class="ex-tag">3 × 20–45 sec — progresses each phase</div></div>
           <div class="ex-sets">Core</div>
         </div>
         <div class="ex-row">
           <div class="ex-badge badge-compound">5</div>
-          <div><div class="ex-name">Pallof Press (light resistance band)</div><div class="ex-note">Anti-rotation press. Obliques + transverse abdominis. Introduced week 3.</div><div class="ex-tag">3 × 12 each side — from week 3</div></div>
+          <div><div class="ex-name">Pallof Press (light resistance band) <a class="ex-demo" href="https://www.youtube.com/results?search_query=pallof+press+band+form" target="_blank" rel="noopener" title="Watch demo">▶ demo</a></div><div class="ex-note">Anti-rotation press. Obliques + transverse abdominis. Introduced week 3.</div><div class="ex-tag">3 × 12 each side — from week 3</div></div>
           <div class="ex-sets">Core</div>
         </div>
       </div>
@@ -1358,7 +1360,7 @@ function buildDay(d) {
             <div class="ex-row">
               <div class="ex-badge ${e.badgeClass}">${e.badge}</div>
               <div>
-                <div class="ex-name">${e.name}${e.load ? `<span class="ex-load">${e.load}</span>` : ''}</div>
+                <div class="ex-name">${e.name}${e.load ? `<span class="ex-load">${e.load}</span>` : ''} <a class="ex-demo" href="${demoLink(e)}" target="_blank" rel="noopener" title="Watch demo">▶ demo</a></div>
                 <div class="ex-note">${e.note}</div>
                 ${e.tag ? `<div class="ex-tag">${e.tag}</div>` : ''}
               </div>
@@ -1400,8 +1402,39 @@ function buildDay(d) {
     </div>`;
 }
 
-function buildWeek(wd, openFirst) {
-  const wc = document.createElement('div');
+/* ===== EXERCISE DEMO LINKS =====
+   Each exercise auto-links to a demo. To use YOUR OWN video for any exercise,
+   add a "video" field to that exercise object, e.g.:
+     {badge:"C", name:"DB Squat", video:"https://youtu.be/YOUR_VIDEO_ID", ...}
+   Otherwise it falls back to the curated map below, then a YouTube search. */
+const DEMO_MAP = {
+  "db squat":"https://www.youtube.com/results?search_query=dumbbell+goblet+squat+form",
+  "goblet squat":"https://www.youtube.com/results?search_query=goblet+squat+form",
+  "bw squat":"https://www.youtube.com/results?search_query=bodyweight+squat+form",
+  "glute bridge":"https://www.youtube.com/results?search_query=glute+bridge+exercise+form",
+  "kb deadlift":"https://www.youtube.com/results?search_query=kettlebell+deadlift+form",
+  "reverse lunge":"https://www.youtube.com/results?search_query=reverse+lunge+form",
+  "db chest press":"https://www.youtube.com/results?search_query=dumbbell+chest+press+form",
+  "push-up":"https://www.youtube.com/results?search_query=push+up+proper+form",
+  "db bent-over row":"https://www.youtube.com/results?search_query=dumbbell+bent+over+row+form",
+  "scapular wall slide":"https://www.youtube.com/results?search_query=scapular+wall+slide",
+  "db lateral raise":"https://www.youtube.com/results?search_query=dumbbell+lateral+raise+form",
+  "reverse plank hold":"https://www.youtube.com/results?search_query=reverse+plank+hold",
+  "step-up":"https://www.youtube.com/results?search_query=step+up+exercise+form",
+  "dead bug":"https://www.youtube.com/results?search_query=dead+bug+exercise+form",
+  "bird dog":"https://www.youtube.com/results?search_query=bird+dog+exercise+form",
+  "hollow body hold":"https://www.youtube.com/results?search_query=hollow+body+hold+progression",
+  "pallof press":"https://www.youtube.com/results?search_query=pallof+press+band+form",
+  "posterior pelvic tilt hold":"https://www.youtube.com/results?search_query=posterior+pelvic+tilt+exercise"
+};
+function demoLink(e){
+  if(e.video) return e.video;                       // your own video wins
+  const key=e.name.toLowerCase().replace(/\s*\([^)]*\)/g,'').trim(); // strip "(BW)" etc
+  for(const k in DEMO_MAP){ if(key.includes(k)) return DEMO_MAP[k]; }
+  return "https://www.youtube.com/results?search_query="+encodeURIComponent(e.name+" exercise form");
+}
+
+function buildWeek(wd, openFirst) {const wc = document.createElement('div');
   wc.className = 'week-card';
   wc.id = `week-${wd.week}`;
   wc.innerHTML = `
